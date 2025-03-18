@@ -28,6 +28,11 @@
                 <mat-error *ngIf="loginform.get('password')?.hasError('minlength')">password should be atleast 7 letters</mat-error>
                 <mat-error *ngIf="loginform.get('password')?.hasError('strongpasswordValidation')">password must have atleast 8 characters and should contain upper and lower case letters</mat-error>
             </mat-form-field>
+            <mat-form-field> 
+                <mat-label>Enter text</mat-label>
+                <input matInput formControlName="text" placeholder="enetr any text" required> 
+
+            </mat-form-field>
         </div>
     </div>
 </form>
