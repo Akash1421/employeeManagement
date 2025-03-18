@@ -1,1 +1,35 @@
-<p>login works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <form [formGroup]="loginform" (ngSubmit)="onSubmit()"> 
+
+   
+    <div class="container"> 
+        <h1>Login Page</h1>
+        <div class="row"> 
+            <mat-form-field appearance="fill" > 
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="mail" placeholder="test@example.com"  required>
+                <mat-error *ngIf="loginform.get('mail')?.hasError('required')">Enter your email</mat-error>
+                <mat-error *ngIf="loginform.get('mail')?.hasError('email')">Enter a valid email </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill"> 
+                <mat-label>Enter Password</mat-label>
+                <input matInput formControlName="password" [type]="hide ? 'password':'text'" >
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off':'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="loginform.get('password')?.hasError('minlength')">password should be atleast 7 letters</mat-error>
+                <mat-error *ngIf="loginform.get('password')?.hasError('strongpasswordValidation')">password must have atleast 8 characters and should contain upper and lower case letters</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+</form>
+</body>
+</html>
